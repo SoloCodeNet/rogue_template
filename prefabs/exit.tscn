@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/exit.gd" type="Script" id=1]
+[ext_resource path="res://assets/top.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 64.0
+
+[node name="exit" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 48, 48, 48 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 32, 0, 48, 0, 48, 48, 32, 48 )
+
+[node name="locked" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="locked"]
+polygon = PoolVector2Array( 0, 0, 0, 16, 10, 16, 10, 48, 24, 48, 24, 0 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 16, 32 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_exit_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
