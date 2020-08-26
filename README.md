@@ -20,4 +20,4 @@ le jeu est complet avec :
 
 ce jeu est un prototype template de départ, il permet d'avoir une base de départ pour la création de son jeu. Il peut aussi servir de base pour ceux qui débutent et veulent voir comment fonctionne le code. 
 
-l'ajout de niveau se fait facilement, allez sur *scene_base.tscn*
+l'ajout de niveau se fait facilement, allez sur *scene_base.tscn* avec click Droit **New Inherited Scene** vous pouves modiifier les tilemaps, changer de positions les enemis, en ajouter etc... une fois terminé enregistrez cette novelle scene en temps que **scene_4** elle sera automatiquement prise en compte dans le jeu.
