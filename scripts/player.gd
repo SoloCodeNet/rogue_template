@@ -62,9 +62,9 @@ func _on_Area2D_body_entered(body: Node) -> void:
 		$invicibiliy.start(0.5)
 		var enemy: Enemy = body
 		velocity = (enemy.global_position - self.global_position).normalized() * -500
-		$Sprite.modulate = Color("#32ffffff")
+		$Sprite.modulate = Color(1, 1, 1, 0.5)
 		MANAGER.change_life(-1)
 
 func _on_invicibiliy_timeout() -> void:
-	$Sprite.modulate = Color("#fff")
+	$Sprite.modulate = Color(1, 1, 1, 1)
 	is_god = false

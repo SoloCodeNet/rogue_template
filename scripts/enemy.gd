@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name Enemy
 
+onready var _heart = load("res://prefabs/heart.tscn")
 signal enemy_dead
 var initial_speed:= 50.0
 var speed:= 0.0
@@ -33,10 +34,14 @@ func random_direction(last_direction:Vector2)-> Vector2:
 	
 func hit()-> void:
 	life-=1
-	$Sprite.modulate = Color("#732ffffff")
+	$Sprite.modulate = Color(1,1,1,0.2)
 	yield(get_tree().create_timer(0.05), "timeout")
-	$Sprite.modulate = Color("#fff")
+	$Sprite.modulate = Color(1,1,1,1)
 	if life <= 0:
+		if randi()%10 <2:
+			var heart = _heart.instance()
+			get_parent().add_child(heart)
+			heart.global_position = self.position
 		emit_signal("enemy_dead")
 		call_deferred("queue_free")
 
